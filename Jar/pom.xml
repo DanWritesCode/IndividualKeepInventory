@@ -2,8 +2,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.github.logics4</groupId>
-        <artifactId>individualkeepinventory</artifactId>
+        <groupId>io.github.logics4.individualkeepinventory</groupId>
+        <artifactId>individualkeepinventory-parent</artifactId>
         <version>1.2.0-SNAPSHOT</version>
     </parent>
 
@@ -14,20 +14,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.logics4</groupId>
-            <artifactId>individualkeepinventory-common</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.logics4</groupId>
+            <groupId>io.github.logics4.individualkeepinventory</groupId>
             <artifactId>individualkeepinventory-bukkit</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>io.github.logics4</groupId>
+            <groupId>io.github.logics4.individualkeepinventory</groupId>
             <artifactId>individualkeepinventory-sponge</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
@@ -43,6 +36,7 @@
                 <version>3.2.4</version>
                 <configuration>
                     <createDependencyReducedPom>false</createDependencyReducedPom>
+                    <minimizeJar>true</minimizeJar>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats.bukkit</pattern>

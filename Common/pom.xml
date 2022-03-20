@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>io.github.logics4</groupId>
-        <artifactId>individualkeepinventory</artifactId>
+        <groupId>io.github.logics4.individualkeepinventory</groupId>
+        <artifactId>individualkeepinventory-parent</artifactId>
         <version>1.2.0-SNAPSHOT</version>
     </parent>
 
