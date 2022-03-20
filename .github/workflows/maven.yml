@@ -15,12 +15,12 @@ jobs:
         java-version: 11
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    
+
     - name: Show folders
       run: find .
-    
+
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: IndividualKeepInventory
-        path: ./jar/target/IndividualKeepInventory-*.jar
+        path: ./Jar/target/IndividualKeepInventory-*.jar
