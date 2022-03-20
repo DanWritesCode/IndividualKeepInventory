@@ -29,6 +29,14 @@
 
     <build>
         <finalName>IndividualKeepInventory-${project.parent.version}</finalName>
+        <resources>
+            <resource>
+                <directory>../</directory>
+                <includes>
+                    <include>LICENSE</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
