@@ -10,7 +10,7 @@
 
     <name>IndividualKeepInventory</name>
     <version>1.2.0-SNAPSHOT</version>
-    <description>Set keepInventory mechanic in a per-player way (through permission).</description>
+    <description>Allows you to set the keepInventory mechanic in Minecraft in a per-player way, through a permission node.</description>
     <url>https://github.com/Logics4/IndividualKeepInventory</url>
 
     <properties>
