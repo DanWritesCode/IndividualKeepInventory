@@ -2,7 +2,7 @@ package io.github.logics4.individualkeepinventory.bukkit;
 
 import io.github.logics4.individualkeepinventory.common.Constants;
 
-import org.bstats.bukkit.MetricsLite;
+import org.bstats.bukkit.Metrics;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,7 +16,7 @@ public class IKI extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
 
         int bStatsId = 10156; // Plugin ID for bStats for Bukkit
-        new MetricsLite(this, bStatsId);
+        new Metrics(this, bStatsId);
     }
 
     @EventHandler

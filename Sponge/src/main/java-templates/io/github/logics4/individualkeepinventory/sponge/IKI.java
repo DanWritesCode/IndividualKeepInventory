@@ -4,7 +4,7 @@ import com.google.inject.Inject;
 
 import io.github.logics4.individualkeepinventory.common.Constants;
 
-import org.bstats.sponge.MetricsLite2;
+import org.bstats.sponge.Metrics;
 
 import org.spongepowered.api.entity.living.player.Player;
 import org.spongepowered.api.event.Listener;
@@ -21,7 +21,7 @@ import org.spongepowered.api.plugin.Plugin;
 public class IKI {
 
     @Inject
-    public IKI(MetricsLite2.Factory metricsFactory) {
+    public IKI(Metrics.Factory metricsFactory) {
         int bStatsId = 10158; // plugin ID for bStats for Sponge
         metricsFactory.make(bStatsId);
     }

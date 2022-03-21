@@ -19,6 +19,7 @@
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>io.github.logics4.individualkeepinventory</groupId>
             <artifactId>individualkeepinventory-sponge</artifactId>
@@ -29,6 +30,7 @@
 
     <build>
         <finalName>IndividualKeepInventory-${project.parent.version}</finalName>
+
         <resources>
             <resource>
                 <directory>../</directory>
@@ -38,6 +40,7 @@
                 </includes>
             </resource>
         </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -47,8 +50,8 @@
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <relocations>
                         <relocation>
-                            <pattern>org.bstats.bukkit</pattern>
-                            <shadedPattern>io.github.logics4.individualkeepinventory.bukkit.bstats</shadedPattern>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>io.github.logics4.individualkeepinventory.libs.org.bstats</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
