@@ -12,12 +12,12 @@ import org.spongepowered.api.event.entity.DestructEntityEvent;
 import org.spongepowered.api.event.filter.Getter;
 import org.spongepowered.api.plugin.Plugin;
 
-@Plugin(id = "${project.parent.artifactId}",
-    name = "${project.parent.name}",
+@Plugin(id = "individualkeepinventory",
+    name = PluginInfo.NAME,
     authors = {"Logics4"},
-    version = "${project.parent.version}",
-    description = "${project.parent.description}",
-    url = "${project.parent.url}")
+    version = PluginInfo.VERSION,
+    description = PluginInfo.DESCRIPTION,
+    url = PluginInfo.URL)
 public class IKI {
 
     @Inject
