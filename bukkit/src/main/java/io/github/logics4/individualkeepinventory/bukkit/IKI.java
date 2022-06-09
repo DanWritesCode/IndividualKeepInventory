@@ -29,24 +29,55 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 public class IKI extends JavaPlugin implements Listener {
 
-    public static final String IKI_KEEPINVENTORY_PERMISSION = "iki.events.playerdeath.keepinventory";
-
-    private HashMap<UUID, Boolean> keepInventory = new HashMap<>();
+    private final String SAVE_FILE = getDataFolder()+"/keepInventory.txt";
+    private final HashMap<UUID, Boolean> keepInventory = new HashMap<>();
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
 
+        if (!getDataFolder().exists())
+            getDataFolder().mkdir();
+
+        Path file = Paths.get(SAVE_FILE);
+
+        if(Files.exists(file))
+            try {
+                List<String> r = Files.readAllLines(file);
+                if(r.size() > 0)
+                    for(String s : r)
+                        if(s.contains(":"))
+                            keepInventory.put(UUID.fromString(s.split(":")[0]), Boolean.parseBoolean(s.split(":")[1]));
+        } catch (IOException ignored) { }
+    }
+
+    @Override
+    public void onDisable() {
+        Path file = Paths.get(SAVE_FILE);
+        try {
+            List<String> writeMe = new ArrayList<>();
+            keepInventory.forEach((k, v) -> writeMe.add(k+":"+v));
+            Files.write(file, writeMe);
+        } catch (IOException ignored) { }
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        if (event.getEntity().hasPermission(IKI_KEEPINVENTORY_PERMISSION)) {
+        if (keepInventory.containsKey(event.getEntity().getUniqueId()) && keepInventory.get(event.getEntity().getUniqueId())) {
             event.setKeepInventory(true);
             event.setKeepLevel(true);
             event.getDrops().clear();
@@ -59,16 +90,13 @@ public class IKI extends JavaPlugin implements Listener {
         if(!(sender instanceof Player)) return false;
         Player player = (Player) sender;
 
-        /*if(!permManager.containsKey(player.getUniqueId()))
-            permManager.put(player.getUniqueId(), player.addAttachment(this));
-
-        if (sender.hasPermission(IKI_KEEPINVENTORY_PERMISSION)) {
-            permManager.get(player.getUniqueId()).setPermission(IKI_KEEPINVENTORY_PERMISSION, false);
-            sender.sendMessage("Keep inventory toggled OFF");
-        } else {
-            permManager.get(player.getUniqueId()).setPermission(IKI_KEEPINVENTORY_PERMISSION, true);
+        if (!keepInventory.containsKey(player.getUniqueId()) || !keepInventory.get(player.getUniqueId())) {
+            keepInventory.put(player.getUniqueId(), true);
             sender.sendMessage("Keep inventory toggled ON");
-        }*/
+        } else {
+            keepInventory.put(player.getUniqueId(), false);
+            sender.sendMessage("Keep inventory toggled OFF");
+        }
 
         return true;
     }
