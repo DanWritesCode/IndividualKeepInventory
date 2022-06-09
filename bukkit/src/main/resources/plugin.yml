@@ -4,7 +4,11 @@ authors: ["Logics4"]
 version: ${project.parent.version}
 description: ${project.parent.description}
 website: ${project.parent.url}
-
+commands:
+  ki:
+    description: Toggle KeepInventory
+    usage: /ki
+    #aliases: [supersnake, ss]
 permissions:
   iki.events.playerdeath.keepinventory:
     default: false

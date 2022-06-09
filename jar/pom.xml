@@ -13,22 +13,10 @@
     <name>IndividualKeepInventory-jar</name>
 
     <dependencies>
-        <dependency>
-            <groupId>io.github.logics4</groupId>
-            <artifactId>individualkeepinventory-common</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>compile</scope>
-        </dependency>
 
         <dependency>
             <groupId>io.github.logics4</groupId>
             <artifactId>individualkeepinventory-bukkit</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.github.logics4</groupId>
-            <artifactId>individualkeepinventory-sponge</artifactId>
             <version>${project.parent.version}</version>
             <scope>compile</scope>
         </dependency>
@@ -41,15 +29,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
-                <configuration>
-                    <createDependencyReducedPom>false</createDependencyReducedPom>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.bstats.bukkit</pattern>
-                            <shadedPattern>io.github.logics4.individualkeepinventory.bukkit.bstats</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>

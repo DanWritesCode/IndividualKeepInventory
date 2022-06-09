@@ -29,13 +29,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.github.logics4</groupId>
-            <artifactId>individualkeepinventory-common</artifactId>
-            <version>${project.parent.version}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <!-- Bukkit API -->
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
@@ -43,13 +36,6 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <!-- bStats Lite for Bukkit -->
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit-lite</artifactId>
-            <version>1.8</version>
-            <scope>compile</scope>
-        </dependency>
     </dependencies>
 
     <build>

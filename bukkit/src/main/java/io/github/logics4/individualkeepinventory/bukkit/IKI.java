@@ -20,32 +20,57 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 package io.github.logics4.individualkeepinventory.bukkit;
 
-import io.github.logics4.individualkeepinventory.common.Constants;
-
-import org.bstats.bukkit.MetricsLite;
-
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashMap;
+import java.util.UUID;
+
 public class IKI extends JavaPlugin implements Listener {
+
+    public static final String IKI_KEEPINVENTORY_PERMISSION = "iki.events.playerdeath.keepinventory";
+
+    private HashMap<UUID, Boolean> keepInventory = new HashMap<>();
 
     @Override
     public void onEnable() {
         getServer().getPluginManager().registerEvents(this, this);
 
-        int bStatsId = 10156; // Plugin ID for bStats for Bukkit
-        new MetricsLite(this, bStatsId);
     }
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event) {
-        if (event.getEntity().hasPermission(Constants.IKI_KEEPINVENTORY_PERMISSION)) {
+        if (event.getEntity().hasPermission(IKI_KEEPINVENTORY_PERMISSION)) {
             event.setKeepInventory(true);
             event.setKeepLevel(true);
             event.getDrops().clear();
             event.setDroppedExp(0);
         }
     }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if(!(sender instanceof Player)) return false;
+        Player player = (Player) sender;
+
+        /*if(!permManager.containsKey(player.getUniqueId()))
+            permManager.put(player.getUniqueId(), player.addAttachment(this));
+
+        if (sender.hasPermission(IKI_KEEPINVENTORY_PERMISSION)) {
+            permManager.get(player.getUniqueId()).setPermission(IKI_KEEPINVENTORY_PERMISSION, false);
+            sender.sendMessage("Keep inventory toggled OFF");
+        } else {
+            permManager.get(player.getUniqueId()).setPermission(IKI_KEEPINVENTORY_PERMISSION, true);
+            sender.sendMessage("Keep inventory toggled ON");
+        }*/
+
+        return true;
+    }
+
 }
